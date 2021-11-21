@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nextConnect from 'next-connect';
 
-import { getIpInfo } from 'services/ip.service';
+import { getIpInfo } from 'services/server/ip.service';
 
 const handler = nextConnect();
 

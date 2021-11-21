@@ -3,9 +3,9 @@ import jwt from 'jsonwebtoken';
 
 import { UserInfo } from 'interfaces/commons';
 import { NextApiAuthRequest } from 'interfaces/apis';
-import { ACCESS_TOKEN } from 'utils/constants';
+import { ACCESS_TOKEN, ROUTES } from 'utils/constants';
 
-const freeAuthRoutes = ['/api/login', '/api/ip'];
+const freeAuthRoutes = ['/api/accounts/login', '/api/ip'];
 
 export const middleware = (req: NextApiAuthRequest) => {
   const { url, cookies } = req;
@@ -22,7 +22,7 @@ export const middleware = (req: NextApiAuthRequest) => {
       req.userId = userInfo.id;
       req.userEmail = userInfo.email;
     } catch {
-      return NextResponse.redirect('/login');
+      return NextResponse.redirect(ROUTES.LOGIN);
     }
   }
 };

@@ -1,40 +1,11 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import type { NextPage } from 'next';
-import { useState, useCallback, useContext } from 'react';
-import { toast } from 'react-toastify';
-import validator from 'validator';
 
-import { logIn } from 'services/client/account.service';
-import { LoginRequest, UserInfo } from 'interfaces/commons';
-import { ERRORS, ROUTES } from 'utils/constants';
-import { AppContext } from 'contexts/app.context';
+import useLogin from 'hooks/useLogin';
+import requirePageNotAuth from 'utils/requirePageNotAuth';
 
 const Login: NextPage = () => {
-  const router = useRouter();
-  const { setUser } = useContext(AppContext);
-
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-
-  const submit = useCallback(
-    async (e: any) => {
-      e.preventDefault();
-      try {
-        if (!email || !email.trim() || !validator.isEmail(email))
-          throw new Error('Email is invalid');
-        if (!password || !password.trim())
-          throw new Error('Password is invalid');
-        const res: any = await logIn({ email, password } as LoginRequest);
-        setUser?.(res.data as UserInfo);
-
-        router.push(ROUTES.HOME);
-      } catch (err: any) {
-        toast.error(ERRORS.BAD_CREDENTIAL);
-      }
-    },
-    [email, password],
-  );
+  const { email, password, setEmail, setPassword, submit } = useLogin();
 
   return (
     <>
@@ -265,3 +236,5 @@ const Login: NextPage = () => {
 };
 
 export default Login;
+
+export const getServerSideProps = requirePageNotAuth;

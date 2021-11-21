@@ -2,7 +2,7 @@ import { PrismaClient } from '.prisma/client';
 import jwt from 'jsonwebtoken';
 import passwordHash from 'password-hash';
 
-import { LoginRequest, LoginReponse } from 'interfaces/commons';
+import { LoginRequest, LoginReponse, UserInfo } from 'interfaces/commons';
 import { ERRORS } from 'utils/constants';
 
 const prisma = new PrismaClient();
@@ -29,6 +29,23 @@ export const login = async (loginInfo: LoginRequest) => {
     email: user.email,
     name: user.name,
     accessToken,
+  };
+
+  await prisma.$disconnect();
+  return data;
+};
+
+export const getInfo = async (id: string) => {
+  await prisma.$connect();
+
+  const user = await prisma.user.findUnique({ where: { id } });
+  if (!user) throw new Error(ERRORS.BAD_CREDENTIAL);
+
+  const { email, name } = user;
+  const data: UserInfo = {
+    id,
+    name,
+    email,
   };
 
   await prisma.$disconnect();

@@ -6,4 +6,5 @@ export const ERRORS = {
 
 export const ROUTES = {
   HOME: '/',
+  LOGIN: '/login',
 };

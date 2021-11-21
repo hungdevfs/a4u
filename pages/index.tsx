@@ -1,10 +1,18 @@
-import type { NextPage } from 'next';
+import type { NextPage, GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useContext } from 'react';
 
 import { AppContext } from 'contexts/app.context';
+import requirePageAuth from 'utils/requirePageAuth';
+import useUserInfo from 'hooks/useUserInfo';
+import { UserInfo } from 'interfaces/commons';
 
-const Home: NextPage = () => {
+interface Props {
+  user: UserInfo;
+}
+
+const Home: NextPage<Props> = ({ user: userInfo }: Props) => {
+  useUserInfo(userInfo);
   const { user } = useContext(AppContext);
 
   return (
@@ -19,3 +27,5 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = requirePageAuth;

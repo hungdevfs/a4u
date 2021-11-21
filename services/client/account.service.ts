@@ -1,7 +1,7 @@
-import axios from 'axios';
+import { api } from './api';
 
 import { LoginRequest } from 'interfaces/commons';
 
-const URL = '/api/login';
+const URL = '/api/accounts/login';
 
-export const logIn = (data: LoginRequest) => axios.post(URL, data);
+export const logIn = (data: LoginRequest) => api.post(URL, data);

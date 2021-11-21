@@ -17,6 +17,8 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
       serialize(ACCESS_TOKEN, data.accessToken, {
         maxAge: 9000000,
         httpOnly: true,
+        sameSite: 'strict',
+        path: '/',
       }),
     );
     res.status(200).json({ id: data.id, email: data.email, name: data.name });
