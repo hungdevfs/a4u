@@ -5,7 +5,7 @@ import { getIpInfo } from 'services/server/ip.service';
 
 const handler = nextConnect();
 
-handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
+handler.get(async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const data = await getIpInfo();
     res.status(200).json(data);
