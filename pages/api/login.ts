@@ -3,7 +3,7 @@ import nextConnect from 'next-connect';
 import { serialize } from 'cookie';
 
 import { LoginRequest } from 'interfaces/commons';
-import { login } from 'services/account.service';
+import { login } from 'services/server/account.service';
 import { ACCESS_TOKEN } from 'utils/constants';
 
 const handler = nextConnect();
