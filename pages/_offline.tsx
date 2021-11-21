@@ -1,7 +1,7 @@
-import { FC } from 'react';
 import Head from 'next/head';
+import type { NextPage } from 'next';
 
-const Offline: FC = () => {
+const Offline: NextPage = () => {
   return (
     <>
       <Head>
