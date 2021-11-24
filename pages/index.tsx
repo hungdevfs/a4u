@@ -2,6 +2,9 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useContext } from 'react';
 
+import Container from 'layouts/Container';
+import Weather from 'components/Weather';
+
 import { AppContext } from 'contexts/app.context';
 import requirePageAuth from 'utils/requirePageAuth';
 import useInitContext from 'hooks/useInitContext';
@@ -21,8 +24,11 @@ const Home: NextPage<Props> = ({ user: userInfo }: Props) => {
         <title>A4U | Home</title>
       </Head>
 
-      <div>{user?.email}</div>
-      <div>{JSON.stringify(ip)}</div>
+      <Container>
+        <div>{user?.email}</div>
+        <Weather />
+        <div className="bg-red-200" style={{ height: '1000px' }} />
+      </Container>
     </>
   );
 };

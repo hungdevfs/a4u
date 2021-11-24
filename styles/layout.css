@@ -1,0 +1,11 @@
+@import 'variables.css';
+
+.header {
+  background-color: var(--dodgerblue);
+  height: 40px;
+}
+
+.footer {
+  height: 40px;
+  background-color: var(--light-white);
+}
