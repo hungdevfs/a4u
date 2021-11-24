@@ -27,7 +27,6 @@ const Home: NextPage<Props> = ({ user: userInfo }: Props) => {
       <Container>
         <div>{user?.email}</div>
         <Weather />
-        <div className="bg-red-200" style={{ height: '1000px' }} />
       </Container>
     </>
   );
