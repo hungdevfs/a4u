@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 html,
 body {
   padding: 0;
@@ -16,7 +18,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--black-opacity);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,22 +35,26 @@ body {
   position: absolute;
   left: 8px;
   width: 16px;
-  background: #fff;
+  background: var(--white);
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-  background-color: dodgerblue;
+  background-color: var(--dodgerblue);
 }
+
 .lds-facebook div:nth-child(1) {
   left: 8px;
   animation-delay: -0.24s;
 }
+
 .lds-facebook div:nth-child(2) {
   left: 32px;
   animation-delay: -0.12s;
 }
+
 .lds-facebook div:nth-child(3) {
   left: 56px;
   animation-delay: 0;
 }
+
 @keyframes lds-facebook {
   0% {
     top: 8px;
