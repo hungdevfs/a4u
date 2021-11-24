@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 import { AppContext } from 'contexts/app.context';
 import requirePageAuth from 'utils/requirePageAuth';
-import useUserInfo from 'hooks/useUserInfo';
+import useInitContext from 'hooks/useInitContext';
 import { UserInfo } from 'interfaces/commons';
 
 interface Props {
@@ -12,8 +12,8 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ user: userInfo }: Props) => {
-  useUserInfo(userInfo);
-  const { user } = useContext(AppContext);
+  useInitContext(userInfo);
+  const { user, ip } = useContext(AppContext);
 
   return (
     <>
@@ -22,6 +22,7 @@ const Home: NextPage<Props> = ({ user: userInfo }: Props) => {
       </Head>
 
       <div>{user?.email}</div>
+      <div>{JSON.stringify(ip)}</div>
     </>
   );
 };
